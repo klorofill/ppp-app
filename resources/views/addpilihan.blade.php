@@ -21,6 +21,9 @@
                 <label class="col-md-3 col-form-label" for="provinsi">NIK</label>
                 <div class="col-md-9">
                     <input type="text" class="form-control" name="nik">
+                    @if($errors->has('nik'))
+                        <div class="error text-danger">{{ $errors->first('nik') }}</div>
+                    @endif
                 </div>
                 </div>
             <div class="row mb-3">
@@ -28,6 +31,9 @@
                 <div class="col-md-9">
                     <input type="hidden" class="form-control" value="{{ $candidate->id }}" name="candidate_id" >
                     <input type="text" class="form-control" name="name">
+                    @if($errors->has('name'))
+                        <div class="error text-danger">{{ $errors->first('name') }}</div>
+                    @endif
                 </div>
             </div>
             <div class="row mb-3">
@@ -43,6 +49,9 @@
                             <option value="{{ $item->id}}">{{ $item->name ?? '' }}</option>
                         @endforeach
                     </select>
+                    @if($errors->has('provinsi'))
+                        <div class="error text-danger">{{ $errors->first('provinsi') }}</div>
+                    @endif
                 </div>
             </div>
             <div class="row mb-3">
@@ -59,6 +68,9 @@
                     <select class="form-control" name="kecamatan" id="kecamatan" required>
                         <option>==Pilih Salah Satu==</option>
                     </select>
+                    @if($errors->has('kecamatan'))
+                        <div class="error text-danger">{{ $errors->first('kecamatan') }}</div>
+                    @endif
                 </div>
             </div>
             <div class="row mb-3">
@@ -67,12 +79,18 @@
                     <select class="form-control" name="desa" id="desa" required>
                         <option>==Pilih Salah Satu==</option>
                     </select>
+                    @if($errors->has('desa'))
+                        <div class="error text-danger">{{ $errors->first('desa') }}</div>
+                    @endif
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-md-3 col-form-label" for="provinsi">Kampung</label>
                 <div class="col-md-9">
                     <input type="text" class="form-control" name="domisili">
+                    @if($errors->has('domisili'))
+                        <div class="error text-danger">{{ $errors->first('domisili') }}</div>
+                    @endif
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Supporter extends Model
 {
     use HasFactory;
+
+    public function candidates()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
 }

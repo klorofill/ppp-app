@@ -14,5 +14,11 @@ class CandidateController extends Controller
         return view('candidate.list', compact('candidates'));
     }
 
+    public function list()
+    {
+        $candidates = Candidate::get();
+        return view('admin.index', compact('candidates'));
+    }
+
 
 }

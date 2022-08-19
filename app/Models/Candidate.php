@@ -12,4 +12,13 @@ class Candidate extends Model
     protected $fillable = [
         'id', 'name'
     ];
+
+    public function supporters()
+    {
+        return $this->hasMany(Supporter::class);
+    }
+
+    public function getCount(){
+        return $this->supporters()->count();
+    }
 }

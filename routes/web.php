@@ -22,9 +22,7 @@ Route::get('candidate/{id}','App\Http\Controllers\SupporterController@add');
 
 Route::post('add-supporter', 'App\Http\Controllers\SupporterController@addsupporter')->name('add-supporter');
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::get('/admin', 'App\Http\Controllers\CandidateController@list');
 
 Route::get('/calon', function () {
     return view('calon.listcalon');

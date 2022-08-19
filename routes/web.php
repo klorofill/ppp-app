@@ -22,6 +22,11 @@ Route::get('candidate/{id}','App\Http\Controllers\SupporterController@add');
 
 Route::post('add-supporter', 'App\Http\Controllers\SupporterController@addsupporter')->name('add-supporter');
 
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('candidate', 'App\Http\Controllers\CandidateController@list');
+    Route::get('add-candidate', 'App\Http\Controllers\CandidateController@addcandidate');
+});
+
 Route::get('/admin', 'App\Http\Controllers\CandidateController@list');
 
 Route::get('/calon', function () {

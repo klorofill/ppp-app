@@ -20,5 +20,10 @@ class CandidateController extends Controller
         return view('admin.index', compact('candidates'));
     }
 
+    public function addcandidate()
+    {
+        return view('admin.addcandidate');
+    }
+
 
 }

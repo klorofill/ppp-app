@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('candidates', function (Blueprint $table) {
+        Schema::create('dapils', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
+            $table->char('code', 3);
+            $table->json('kecamatan');
+            $table->unsignedBigInteger('citie_id');
+            $table->foreign('citie_id')->references('id')->on('indonesia_cities')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidates');
+        Schema::dropIfExists('dapils');
     }
 };

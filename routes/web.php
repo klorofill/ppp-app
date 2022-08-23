@@ -13,8 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// UNTUK USER
+Route::group(['prefix' => 'user'], function() {
+    Route::get('/', 'App\Http\Controllers\DapilController@getdapil');
+    Route::get('/dapil/{id}', 'App\Http\Controllers\DivisiController@getdivisi');
+    Route::get('/dapil/{id}/{divisi}', 'App\Http\Controllers\DapilController@getdapil')->name('post.show');;
+});
+Route::get('user/dapil', 'App\Http\Controllers\DapilController@getdapil');
+Route::get('user/dapil/{id}', 'App\Http\Controllers\DivisiController@getdivisi');
+Route::get('user/dapil/{id}/{divisi}', 'App\Http\Controllers\DapilController@getdapil')->name('post.show');;
+
+
+Route::get('/divisi', function () {
+    return view('divisi');
 });
 
 Route::get('candidate', 'App\Http\Controllers\CandidateController@index');

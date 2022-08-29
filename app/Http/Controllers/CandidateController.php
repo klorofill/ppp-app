@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Models\Candidate;
 
+
+
 class CandidateController extends Controller
 {
-    public function index()
+    public function getcandidate($id, $divisi)
     {
-        $candidates = Candidate::get();
-        return view('candidate.list', compact('candidates'));
+        $candidates = Candidate::where('dapil_id', '=', $id)
+                                ->where('divisi', '=', $divisi)
+                                ->get();
+        return view('candidate', compact('candidates'));
     }
 
     public function list()

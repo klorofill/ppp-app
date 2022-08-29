@@ -10,7 +10,7 @@ class Candidate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 'name'
+        'id', 'name', 'divisi', 'dapil_id'
     ];
 
     public function supporters()
@@ -20,5 +20,10 @@ class Candidate extends Model
 
     public function getCount(){
         return $this->supporters()->count();
+    }
+
+    public function dapils()
+    {
+        return $this->belongsTo(Dapil::class);
     }
 }

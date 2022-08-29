@@ -9,8 +9,19 @@ class Supporter extends Model
 {
     use HasFactory;
 
+    protected $table = "supporters";
+
+    protected $fillable = [
+        'id', 'nik',  'name', 'village_id'
+    ];
+
     public function candidates()
     {
         return $this->belongsTo(Candidate::class);
+    }
+
+    public function villages()
+    {
+        return $this->belongsTo(Village::class);
     }
 }

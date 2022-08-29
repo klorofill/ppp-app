@@ -25,8 +25,11 @@
 <body id="page-top">
     <div class="container pt-4 mt-4 ">
         <div class="card mx-auto p-2 col-md-9 col-xl-9">
+            
             <div class="card-header mb-4 bg-success text-light">
-                <h2>Bandung Barat</h2>
+                <h2>
+                    {{ $kabupaten->name}}
+                    </h2>
             </div>
             <div class="row">
             @foreach ($dapil as $dapi)

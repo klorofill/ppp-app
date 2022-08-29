@@ -10,42 +10,76 @@ use App\Models\Candidate;
 
 use Illuminate\Validation\Rule;
 
+use DB;
+
+use PDF;
+
 class SupporterController extends Controller
 {
-    public function add(Request $request, $id)
+    public function supportterform(Request $request, $id)
     {
         $candidate = Candidate::find($id);
-        return view('addpilihan', compact('candidate'));
+        return view('supporter', compact('candidate'));
     }
 
     public function addsupporter(Request $request)
     {
         $request->validate([
             'name' => 'required',
+            'name' => 'required',
+            'nohp' => 'required',
             'candidate_id' => 'required',
-            'nik' => 'required|unique:supporters,nik|min:16',
+            'nik' => 'required|min:16|max:16',
             'provinsi' => 'required',
             'kota' => 'required',
             'kecamatan' => 'required',
             'desa' => 'required',
-            'domisili' => 'required'
+            'domisili' => 'required',
+
         ]);
 
-        
-        
-        print_r($request->name);
-        $supporter = new Supporter;
-        $supporter->name = $request->name;
-        $supporter->candidate_id = $request->candidate_id;
-        $supporter->nik = $request->nik;
-        $supporter->province_id = $request->provinsi;
-        $supporter->citie_id  = $request->kota;
-        $supporter->district_id  = $request->kecamatan;
-        $supporter->village_id  = $request->desa;
-        $supporter->domisili = $request->domisili;
-        $supporter->save();
+        $whereData = [
+            ['nik', $request->nik],
+            ['candidate_id', $request->candidate_id]
+        ];
 
-        return redirect()->route('companies.index')
-        ->with('success','Company has been created successfully.');
+        $data = [
+          $request->nik,
+          $request->name,
+          $request->candidate_id
+        ];
+
+        $count = DB::table('supporters')->where($whereData)->count();
+
+        if($count > 0)
+        {
+            return \Redirect::back()->with('error_code', 0);
+        }
+        else
+        {
+          $supporter = new Supporter;
+          $supporter->name = $request->name;
+          $supporter->candidate_id = $request->candidate_id;
+          $supporter->nik = $request->nik;
+          $supporter->province_id = $request->provinsi;
+          $supporter->citie_id  = $request->kota;
+          $supporter->district_id  = $request->kecamatan;
+          $supporter->village_id  = $request->desa;
+          $supporter->domisili = $request->domisili;
+          $supporter->save();
+
+
+          return view("bukti")->with('store', $data);
+        }
+
+        
+    }
+
+    public function cetak_pdf($idcandidate, $nik)
+    {
+      $data = Supporter::where('nik', $nik)->get();
+      $pdf = PDF::loadview('bukti_pdf', ['supporter' => $data]);
+
+      return $pdf->download($nik.'.pdf');
     }
 }

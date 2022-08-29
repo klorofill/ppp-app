@@ -8,9 +8,10 @@ use App\Models\Dapil;
 
 class DapilController extends Controller
 {
-    public function getdapil()
+    public function getdapil(Request $request)
     {
-        $dapil = Dapil::where('citie_id', 177)->get();
-        return view('dapil', compact('dapil'));
+        $kabupaten  = \Indonesia::findCity($request->kota);
+        $dapil = Dapil::where('citie_id', $request->kota)->get();
+        return view('dapil', compact('dapil','kabupaten'));
     }
 }

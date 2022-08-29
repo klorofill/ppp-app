@@ -13,15 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function(){
+    return view('home');
+});
+
 // UNTUK USER
 Route::group(['prefix' => 'user'], function() {
-    Route::get('/', 'App\Http\Controllers\DapilController@getdapil');
+
+    Route::get('/provinsi', 'App\Http\Controllers\WilayahController@getprovinsi');
+
+    Route::get('/kabupaten', 'App\Http\Controllers\DapilController@getdapil')->name('suportter');
+
     Route::get('/dapil/{id}', 'App\Http\Controllers\DivisiController@getdivisi');
-    Route::get('/dapil/{id}/{divisi}', 'App\Http\Controllers\DapilController@getdapil')->name('post.show');;
+
+    Route::get('/dapil/{id}/{divisi}', 'App\Http\Controllers\DapilController@getdapil')->name('post.show');
+
+    Route::get('/candidate/{id}', 'App\Http\Controllers\SupporterController@supportterform')->name('candidate');
+
+    Route::post('/add-supporter', 'App\Http\Controllers\SupporterController@addsupporter')->name('add-supporter');
+
+    Route::get('/cetak/{idcandidate}/{nik}', 'App\Http\Controllers\SupporterController@cetak_pdf');
+
 });
 Route::get('user/dapil', 'App\Http\Controllers\DapilController@getdapil');
 Route::get('user/dapil/{id}', 'App\Http\Controllers\DivisiController@getdivisi');
-Route::get('user/dapil/{id}/{divisi}', 'App\Http\Controllers\DapilController@getdapil')->name('post.show');;
+Route::get('user/dapil/{id}/{divisi}', 'App\Http\Controllers\CandidateController@getcandidate')->name('post.show');
 
 
 Route::get('/divisi', function () {

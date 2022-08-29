@@ -10,14 +10,12 @@ class Dapil extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'id', 'code', 'citie_id ', 'kecamatan'
     ];
 
-    public function divisi()
+    public function candidate()
     {
-        return $this->hasMany(Supporter::class);
+        return $this->hasMany(Candidate::class);
     }
 
     public function citie()

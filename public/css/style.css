@@ -1,0 +1,30 @@
+#show_bg {
+    background-image: url("assets/img/bg-1.");
+    width: 80%;
+    height: 200px;
+    background-size: cover;
+    color: white;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("img/bg-1.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (min-width: 576px) {
+    .jumbotron-2 {
+        padding: 4rem 2rem;
+        padding-top: 4rem;
+        padding-right: 2rem;
+        padding-bottom: 4rem;
+        padding-left: 2rem;
+    }
+}
+
+.form-control {
+    padding: 0.5rem;
+}

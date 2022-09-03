@@ -61,9 +61,7 @@ class SupporterController extends Controller
           $supporter->name = $request->name;
           $supporter->candidate_id = $request->candidate_id;
           $supporter->nik = $request->nik;
-          $supporter->province_id = $request->provinsi;
-          $supporter->citie_id  = $request->kota;
-          $supporter->district_id  = $request->kecamatan;
+          $supporter->nohp = $request->nohp;
           $supporter->village_id  = $request->desa;
           $supporter->domisili = $request->domisili;
           $supporter->save();

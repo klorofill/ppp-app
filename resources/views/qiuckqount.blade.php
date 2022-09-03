@@ -87,38 +87,9 @@
         <div class="row">
             <div class="card col-md-4 shadow-sm">
                 <div class="card-body">
-                    <h3 class="card-title my-4">Daftar Isian</h3>
-                    <form method="post" action="{{ route('add-supporter') }}">
+                    <h3 class="card-title my-4">LOKASI TPS</h3>
+                    <form method="post" action="{{ route('quickqount.form') }}">
                     {{ csrf_field() }}
-                    <div class="row mb-12 my-3">
-                        <label class="col-md-12 col-form-label" for="kota">NIK</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" name="nik">
-                            @error('nik')
-                            <label class="text-danger">{{ $message }}</label>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-12 my-3">
-                        <label class="col-md-12 col-form-label" for="kota">Nama</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" name="name">
-                            @error('name')
-                            <label class="text-danger">{{ $message }}</label>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-12 my-3">
-                        <label class="col-md-12 col-form-label" for="kota">No Hp</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" name="nohp">
-                            @error('nohp')
-                            <label class="text-danger">{{ $message }}</label>
-                            @enderror
-                        </div>
-                    </div>
 
                     <div class="row mb-12 my-3">
                         <label class="col-md-12 col-form-label" for="kota">Provinsi</label>
@@ -152,6 +123,18 @@
                     </div>
 
                     <div class="row mb-12 my-3">
+                        <label class="col-md-12 col-form-label" for="kota">Dapil</label>
+                        <div class="col-md-12">
+                            <select class="form-control" name="dapils" id="dapils" required>
+                                <option>==Pilih Salah Satu==</option>
+                            </select>
+                        </div>
+                        @error('dapil')
+                            <label class="text-danger">{{ $message }}</label>
+                        @enderror
+                    </div>
+
+                    <div class="row mb-12 my-3">
                         <label class="col-md-12 col-form-label" for="kota">Kecamatan</label>
                         <div class="col-md-12">
                             <select class="form-control" name="kecamatan" id="kecamatan" required>
@@ -176,12 +159,28 @@
                     </div>
 
                     <div class="row mb-12 my-3">
-                        <label class="col-md-12 col-form-label" for="kota">Alamat Domisili</label>
+                        <label class="col-md-12 col-form-label" for="kota">TPS</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name="domisili">
-                            <input type="hidden" class="form-control" name="candidate_id" value="{{ $candidate->id}}">
+                            <select class="form-control" name="tps" id="tps" required>
+                                <option>==Pilih Salah Satu==</option>
+                            </select>
                         </div>
-                        @error('domisili')
+                        @error('desa')
+                            <label class="text-danger">{{ $message }}</label>
+                        @enderror
+                    </div>
+
+                    <div class="row mb-12 my-3">
+                        <label class="col-md-12 col-form-label" for="kota">Pemilihan Caleg</label>
+                        <div class="col-md-12">
+                            <select class="form-control" name="caleg" id="caleg" required>
+                                <option>==Pilih Salah Satu==</option>
+                                <option value="dprdk">DPRD Kabupaten</option>
+                                <option value="dprdp">DPRD Provinsi</option>
+                                <option value="dprri">DPR RI</option>
+                            </select>
+                        </div>
+                        @error('desa')
                             <label class="text-danger">{{ $message }}</label>
                         @enderror
                     </div>
@@ -198,47 +197,6 @@
         </div>
     </div>
 </div>
-
-{{-- GAGAL MODAL --}}
-<div id="gagalnodal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="icon-box">
-					<i class="fas fa-fw fa-check"></i>
-				</div>				
-				<h4 class="modal-title w-100">
-                    Maaf Data Anda Sudah Ada <span id="modal-category_name"></span>
-                </h4>	
-			</div>
-			<div class="modal-body">
-				<p class="text-center">Your booking has been confirmed. Check your email for detials.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
-			</div>
-		</div>
-
-	</div>
-</div>
-{{-- <div class="modal fade" id="gagalnodal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteCategory" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                Maaf Data Anda Sudah Ada <span id="modal-category_name"></span>?
-                <input type="hidden" id="category" name="category_id">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
-            </div>
-        </div>
-    </div>
-</div> --}}
-{{-- GAGAL MODAL --}}
-
-
-
-{{-- SUKSES MODAL --}}
 
 <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -288,11 +246,20 @@
         $('#provinsi').on('change', function () {
             onChangeSelect('{{ route("regencys") }}', $(this).val(), 'kota');
         });
+
         $('#kota').on('change', function () {
             onChangeSelect('{{ route("districts") }}', $(this).val(), 'kecamatan');
-        })
+        });
+        $('#kota').on('change', function () {
+            onChangeSelect('{{ route("dapils") }}', $(this).val(), 'dapils');
+        });
+
         $('#kecamatan').on('change', function () {
             onChangeSelect('{{ route("villages") }}', $(this).val(), 'desa');
+        });
+
+        $('#desa').on('change', function () {
+            onChangeSelect('{{ route("tps") }}', $(this).val(), 'tps');
         })
     });
 </script>

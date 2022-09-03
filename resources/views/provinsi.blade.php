@@ -72,7 +72,7 @@
 
     $(function () {
         $('#provinsi').on('change', function () {
-            onChangeSelect('{{ route("cities") }}', $(this).val(), 'kota');
+            onChangeSelect('{{ route("regencys") }}', $(this).val(), 'kota');
         });
         $('#kota').on('change', function () {
             onChangeSelect('{{ route("districts") }}', $(this).val(), 'kecamatan');

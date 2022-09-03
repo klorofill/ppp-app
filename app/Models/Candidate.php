@@ -13,7 +13,7 @@ class Candidate extends Model
         'id', 'name', 'divisi', 'dapil_id'
     ];
 
-    public function supporters()
+    public function supporter()
     {
         return $this->hasMany(Supporter::class);
     }
@@ -22,8 +22,13 @@ class Candidate extends Model
         return $this->supporters()->count();
     }
 
-    public function dapils()
+    public function dapil()
     {
         return $this->belongsTo(Dapil::class);
+    }
+
+    public function quickcount()
+    {
+        return $this->belongsTo(Quickcount::class);
     }
 }

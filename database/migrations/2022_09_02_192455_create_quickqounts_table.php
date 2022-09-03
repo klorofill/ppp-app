@@ -13,19 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('supporters', function (Blueprint $table) {
+        Schema::create('quickqounts', function (Blueprint $table) {
             $table->id();
-            $table->char('nik', 16);
-            $table->char('name', 100);
-            $table->char('nohp', 100);
-            $table->char('village_id');
-            $table->string('domisili');
+            $table->unsignedBigInteger('suara');
+            $table->unsignedBigInteger('votingplace_id');
             $table->unsignedBigInteger('candidate_id');
 
-            $table->foreign('village_id')->references('id')->on('villages')->onDelete('cascade');
-
+            $table->foreign('votingplace_id')->references('id')->on('votingplaces')->onDelete('cascade');
             $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }
@@ -37,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supporters');
+        Schema::dropIfExists('quickqounts');
     }
 };

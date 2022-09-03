@@ -32,31 +32,35 @@
             <tr>
                 <td style="width: 30%;">Nama</td>
                 <td style="width: 5%;">:</td>
-                <td style="width: 65%;">{{ $supporters->name }}</td>
+                <td style="width: 65%;">{{ strtoupper($supporters->name) }}</td>
             </tr>
             <tr>
-                <td style="width: 30%;">Tempat, tanggal lahir</td>
+                <td style="width: 30%;">NIK</td>
                 <td style="width: 5%;">:</td>
-                <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                <td style="width: 65%;">{{ $supporters->nik }}</td>
+            </tr>
+            <tr>
+                <td style="width: 30%;">No Hp</td>
+                <td style="width: 5%;">:</td>
+                <td style="width: 65%;">{{$supporters->nohp }}</td>
             </tr>
             <tr>
                 <td style="width: 30%; vertical-align: top;">Alamat</td>
                 <td style="width: 5%; vertical-align: top;">:</td>
-                <td style="width: 65%;">{{ dd($supporters->villages->id) }}</td>
-            </tr>
-            <tr>
-                <td style="width: 30%;">Pekerjaan</td>
-                <td style="width: 5%;">:</td>
-                <td style="width: 65%;">Guru</td>
+                <td style="width: 65%;">
+                    {{ strtoupper($supporters->domisili) }}, 
+                    DESA {{ $supporters->village->name }},  
+                    KECAMATAN {{ $supporters->village->district->name }}, 
+                    {{ $supporters->village->district->regency->name }}, 
+                    PROVINSI {{ $supporters->village->district->regency->province->name }}
             </tr>
         </table>
         @endforeach
-        <p>menyatakan dengan sebenar-benarnya akan bersungguh-sungguh belajar dan bekerja.</p>
+        <p>menyatakan dengan sebenarnya akan Memilih calon Legislatif Yang Bernama 
+        <b>{{ strtoupper($supporters->candidate->name) }} </b>Pada Pemilu tahun 2024
+        </p>
 
-        <div style="width: 50%; text-align: left; float: right;">Purwodadi, 20 Januari 2020</div><br>
-        <div style="width: 50%; text-align: left; float: right;">Yang bertanda tangan,</div><br><br><br><br><br>
-        <div style="width: 50%; text-align: left; float: right;">Arbrian Abdul Jamal</div>
-
+        <div style="width: 50%; text-align: left; float: right;">{{ $supporters->village->district->regency->name }}, {{ $supporters->created_at->toDateString()}}</div><br>
     </div>
 </body>
 

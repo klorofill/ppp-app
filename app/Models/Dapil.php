@@ -23,7 +23,5 @@ class Dapil extends Model
         return $this->belongsTo(CitiesSeeder::class);
     }
 
-    
-
 
 }

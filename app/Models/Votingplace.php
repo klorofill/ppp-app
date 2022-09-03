@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Supporter extends Model
+class Votingplace extends Model
 {
     use HasFactory;
 
-    protected $table = "supporters";
-
-    public function candidate()
+    public function quickqount()
     {
-        return $this->belongsTo(Candidate::class);
+        return $this->hasMany(Quickqount::class);
     }
 
     public function village()

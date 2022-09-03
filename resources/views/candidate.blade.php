@@ -12,9 +12,11 @@
                     <div class="card-body">
                         <div class="card-body">
                             <table class="table">
+                            @php $no = 1; @endphp
                             @foreach ($candidates as $candidate)
+                            
                             <tr>
-                                <td>{{ $candidate->id }}</a></td>
+                                <td>{{ $no++ }}</a></td>
                                 <td><a onclick="loadDeleteModal({{ $candidate->id }}, '{{ $candidate->name }}')">{{ $candidate->name }}</td>
                             </button>
                             </tr>

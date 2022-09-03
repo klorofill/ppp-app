@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->char('code', 3);
             $table->json('kecamatan');
-            $table->unsignedBigInteger('citie_id');
-            $table->foreign('citie_id')->references('id')->on('indonesia_cities')->onDelete('cascade');
+            $table->char('regency_id');
+            $table->foreign('regency_id')
+                ->references('id')
+                ->on('regencies')
+                ->onDelete('cascade');
+            // $table->foreign('regency_id')->references('id')->on('regencies')->onDelete('cascade');
             $table->timestamps();
         });
     }

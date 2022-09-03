@@ -37,7 +37,7 @@
 
             .jumbotron{
                 border-radius: 0px;
-                height: 100%;
+                width: 100%s
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -53,8 +53,8 @@
             <a class="navbar-brand align-self-center" href="#">
             <img src="{{ asset('img/ppp_logo.png')}}" width="65" height="65" class="d-inline-block align-top float-left" alt="">
             <div class="home-header-text d-none d-md-block float-left mx-3 my-2 align-middle">
-                <h5>PPP – PARTAI PERSATUAN PEMBANGUNAN</h5>
-                <h6>Merawat Persatuan Dengan Pembangunan</h6>
+                <h5>SIAPPP</h5>
+                <h6>Sistem Informasi Analisis Progres PPP</h6>
             </div>
             <span class="logo-mini d-sm-block d-md-none ">PPP - Partai Persatuan</span>
             </a>
@@ -64,22 +64,7 @@
             <div id="menu" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                <a class="nav-link active" href="#home" id="link-home">Beranda</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#tentang" id="link-tentang">Tentang</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#statistik" id="link-statistik">Statistik</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#jadwal" id="link-jadwal">Lini Masa</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#galeri" id="link-galeri">Galeri</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#video" id="link-video">Video</a>
+                <a class="nav-link btn-success" href="{{ url('user/login') }}" id="">Login</a>
                 </li>
             </ul>
             </div>
